@@ -1,0 +1,28 @@
+<!-- src/app.header/header.component.html -->
+
+<header id="header" class="header">
+  <div class="header-page bg-primary">
+    <a class="toggle-offcanvas bg-primary" (click)="toggleNav()"><span></span></a>
+    <h1 class="header-page-siteTitle">
+      <a routerLink="/">GP - ANGEL</a>
+    </h1>
+    <div class="header-page-login pull-right">
+      <h2><a routerLink="/inscription"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }">Inscription</a></h2>
+      <h2><a routerLink="/connexion"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }">Connexion</a></h2>
+    </div>
+  </div>
+
+  <nav id="nav" class="nav" role="navigation">
+    <ul class="nav-list">
+      <li *ngFor="let item of menuItem">
+        <a routerLink="/{{item.slug}}"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">{{item.name}}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
