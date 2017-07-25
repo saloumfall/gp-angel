@@ -6,7 +6,7 @@ import 'rxjs/add/operator/filter';
 interface MenuItem {
   name: string;
   slug: string;
-};
+}
 
 const menuItem = [{
   name: 'Publier une annonce',
