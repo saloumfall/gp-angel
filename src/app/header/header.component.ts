@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 
 import 'rxjs/add/operator/filter';
+import { AuthService } from '../auth/auth.service';
 
 interface MenuItem {
   name: string;
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit {
   navOpen = false;
   menuItem: MenuItem[] = menuItem;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public auth: AuthService) { }
 
   ngOnInit() {
     // If nav is open after routing, close it

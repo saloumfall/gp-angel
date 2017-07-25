@@ -104,6 +104,11 @@
   margin-bottom: 10px;
   position: relative;
 
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
   &-siteTitle {
     font-size: 30px;
     line-height: 50px;
@@ -122,8 +127,17 @@
       margin-right: 1rem;
     }
   }
-  a {
+  &-authStatus {
     color: #fff;
-    text-decoration: none;
+    font-size: 12px;
+    line-height: 50px;
+    padding: 0 10px;
+    position: absolute;
+    right: 0; top: 0;
+
+    a:hover {
+      text-decoration: underline;
+    }
   }
+
 }

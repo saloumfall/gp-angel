@@ -11,9 +11,9 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-  CLIENT_ID: '[AUTH0_CLIENT_ID]',
-  CLIENT_DOMAIN: '[AUTH0_CLIENT_DOMAIN]',
-  AUDIENCE: '[YOUR_AUTH0_API_AUDIENCE]',
+  CLIENT_ID: 'HGdHWUh7gUF2yMiGpGbDZQc8j8z6NaUK',
+  CLIENT_DOMAIN: 'saloumfall.eu.auth0.com',
+  AUDIENCE: 'http://localhost:8083/api/v2/',
   REDIRECT: `${ENV.BASE_URI}/callback`,
   SCOPE: 'openid profile'
 };
