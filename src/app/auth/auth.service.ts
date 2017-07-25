@@ -23,6 +23,7 @@ export class AuthService {
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
+  isAdmin: boolean;
 
   constructor(private router: Router) {
     // If authenticated, set local profile property
@@ -33,6 +34,7 @@ export class AuthService {
 
     if (this.tokenValid) {
       this.userProfile = JSON.parse(lsProfile);
+      this.isAdmin = localStorage.getItem('isAdmin') === 'true';
       this.setLoggedIn(true);
     } else if (!this.tokenValid && lsProfile) {
       this.logout();
@@ -77,8 +79,11 @@ export class AuthService {
   private _setSession(authResult, profile) {
     // Save session data and update login status subject
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + Date.now());
+
     // Set tokens and expiration in localStorage and props
+    this.isAdmin = this._checkAdmin(profile);
     localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('isAdmin', this.isAdmin.toString());
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
     localStorage.setItem('profile', JSON.stringify(profile));
@@ -94,8 +99,10 @@ export class AuthService {
     localStorage.removeItem('profile');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('authRedirect');
+    localStorage.removeItem('isAdmin');
     // Reset local properties, update loggedIn$ stream
     this.userProfile = undefined;
+    this.isAdmin = undefined;
     this.setLoggedIn(false);
     // Return to homepage
     this.router.navigate(['/']);
@@ -105,6 +112,14 @@ export class AuthService {
     // Check if current time is past access token's expiration
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return Date.now() < expiresAt;
+  }
+
+
+  private _checkAdmin(profile: any) {
+    // Check if the user has admin role
+    const roles = profile[AUTH_CONFIG.NAMESPACE] || [];
+    return roles.indexOf('admin') > -1;
+
   }
 
 

@@ -31,6 +31,16 @@ module.exports = function(app, config) {
     algorithm: 'RS256'
   });
 
+  // check for an authenticated admin user
+  const admincheck = (req, res, next) => {
+    const roles = req.user[config.NAMESPACE] || [];
+    if(roles.indexOf('admin') > -1) {
+      next();
+    }else{
+      res.status(401).send({message: 'Not authorized for admin access'});
+    }
+  }
+
   /*
    |--------------------------------------
    | API Routes

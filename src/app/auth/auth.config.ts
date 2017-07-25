@@ -8,6 +8,7 @@ interface AuthConfig {
   AUDIENCE: string;
   REDIRECT: string;
   SCOPE: string;
+  NAMESPACE: string;
 }
 
 export const AUTH_CONFIG: AuthConfig = {
@@ -15,5 +16,6 @@ export const AUTH_CONFIG: AuthConfig = {
   CLIENT_DOMAIN: 'saloumfall.eu.auth0.com',
   AUDIENCE: 'http://localhost:8083/api/v2/',
   REDIRECT: `${ENV.BASE_URI}/callback`,
-  SCOPE: 'openid profile'
+  SCOPE: 'openid profile',
+  NAMESPACE: 'http://gp-angel.Com/roles'
 };
