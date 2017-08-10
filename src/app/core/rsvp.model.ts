@@ -1,5 +1,4 @@
 // src/app/core/models/rsvp.model.ts
-
 export class RsvpModel {
   constructor(
     public userId: string,
@@ -9,5 +8,5 @@ export class RsvpModel {
     public guests?: number,
     public comments?: string,
     public _id?: string
-  ) {}
+  ) { }
 }

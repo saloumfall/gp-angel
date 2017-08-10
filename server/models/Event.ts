@@ -1,13 +1,20 @@
-// src/app/core/models/event.model.ts
+// server/models/Event.js
+/*
+ |--------------------------------------
+ | Event Model
+ |--------------------------------------
+ */
 
-export class EventModel {
-  constructor(
-    public title: string,
-    public location: string,
-    public startDatetime: Date,
-    public endDatetime: Date,
-    public viewPublic: boolean,
-    public description?: string,
-    public _id?: string
-  ) {}
-}
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const eventSchema = new Schema({
+  title: { type: String, required: true },
+  location: { type: String, required: true },
+  startDatetime: { type: Date, required: true },
+  endDatetime: { type: Date, required: true },
+  description: String,
+  viewPublic: { type: Boolean, required: true }
+});
+
+module.exports = mongoose.model('Event', eventSchema);
