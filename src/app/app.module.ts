@@ -22,6 +22,9 @@ import { UtilsService } from './core/utils.service';
 import { FilterSortService } from './core/filter-sort.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
+import { EventComponent } from './pages/event/event.component';
+import { EventDetailComponent } from './pages/event/event-detail/event-detail.component';
+import { RsvpComponent } from './pages/event/rsvp/rsvp.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { AdminGuard } from './auth/admin.guard';
     CallbackComponent,
     LoadingComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    EventComponent,
+    EventDetailComponent,
+    RsvpComponent
   ],
   imports: [
     BrowserModule,

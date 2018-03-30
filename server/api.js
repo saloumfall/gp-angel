@@ -72,7 +72,8 @@ module.exports = function(app, config) {
   });
 
   // GET list of all events, public and private (admin only)
-  app.get('/api/v2/events/admin', jwtCheck, adminCheck, (req, res) => {
+  //app.get('/api/v2/events/admin', jwtCheck, adminCheck, (req, res) => {
+  app.get('/api/v2/events/admin', (req, res) => {
     Event.find({}, _eventListProjection, (err, events) => {
         let eventsArr = [];
         if (err) {
