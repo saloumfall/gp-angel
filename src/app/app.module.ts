@@ -2,16 +2,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
+import { AppRoutingModule } from './app-routing.module';
+
+import { AdminComponent } from './pages/admin/admin.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CallbackComponent } from './pages/callback/callback.component';
+import { LoadingComponent } from './core/loading.component';
+
+
 import { AuthService } from './auth/auth.service';
 import { ApiService } from './core/api.service';
-import { LoadingComponent } from './core/loading.component';
+import { UtilsService } from './core/utils.service';
+import { FilterSortService } from './core/filter-sort.service';
+import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './auth/admin.guard';
 
 @NgModule({
   declarations: [
@@ -20,18 +30,29 @@ import { LoadingComponent } from './core/loading.component';
     FooterComponent,
     CallbackComponent,
     LoadingComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
 
 
     // Routing
     RouterModule,
     AppRoutingModule
   ],
-  providers: [AuthService, ApiService],
+  providers: [
+    AuthGuard,
+    AdminGuard,
+    AuthService,
+    ApiService,
+    UtilsService,
+    FilterSortService,
+
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

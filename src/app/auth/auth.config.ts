@@ -17,5 +17,5 @@ export const AUTH_CONFIG: AuthConfig = {
   AUDIENCE: 'http://localhost:8083/api/v2/',
   REDIRECT: `${ENV.BASE_URI}/callback`,
   SCOPE: 'openid profile',
-  NAMESPACE: 'http://gp-angel.Com/roles'
+  NAMESPACE: 'http://gp-angel.com/roles'
 };

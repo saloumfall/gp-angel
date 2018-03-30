@@ -47,7 +47,10 @@ export class AuthService {
     this.loggedIn = value;
   }
 
-  login() {
+  login(redirect?: string) {
+    // Set redirect after login
+    const _redirect = redirect ? redirect : this.router.url;
+    localStorage.setItem('authRedirect', redirect);
     // Auth0 authorize request
     this._auth0.authorize();
   }
@@ -59,6 +62,8 @@ export class AuthService {
         window.location.hash = '';
         this._getProfile(authResult);
       } else if (err) {
+        this._clearRedirect();
+        this.router.navigate(['/']);
         console.error(`Error authenticating: ${err.error}`);
       }
       this.router.navigate(['/']);
@@ -69,11 +74,18 @@ export class AuthService {
     // Use access token to retrieve user's profile and set session
     this._auth0.client.userInfo(authResult.accessToken, (err, profile) => {
       if (profile) {
+        this.router.navigate([localStorage.getItem('authRedirect') || '/']);
+        this._clearRedirect();
         this._setSession(authResult, profile);
       } else if (err) {
         console.error(`Error authenticating: ${err.error}`);
       }
     });
+  }
+
+  private _clearRedirect() {
+   // Remove redirect from localStorage
+        localStorage.removeItem('authRedirect');
   }
 
   private _setSession(authResult, profile) {
@@ -104,6 +116,7 @@ export class AuthService {
     this.userProfile = undefined;
     this.isAdmin = undefined;
     this.setLoggedIn(false);
+    this._clearRedirect();
     // Return to homepage
     this.router.navigate(['/']);
   }
