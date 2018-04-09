@@ -42,6 +42,13 @@
     </div>
   </ng-template>
 
+  <!-- Event RSVP content -->
+  <app-rsvp
+    *ngIf="utils.tabIs(tab, 'rsvp')"
+    [eventId]="event._id"
+    [eventPast]="eventPast">
+  </app-rsvp>
+
   <!-- Error loading events -->
   <p *ngIf="error" class="alert alert-danger">
     <strong>Oops!</strong> There was an error retrieving information for this event.
