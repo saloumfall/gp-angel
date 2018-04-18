@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+// src/app/auth/auth.module.ts
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './auth.service';
 
 @NgModule({
   imports: [
@@ -7,4 +9,13 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class AuthModule { }
+export class AuthModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AuthModule,
+      providers: [
+        AuthService
+      ]
+    };
+  }
+}
