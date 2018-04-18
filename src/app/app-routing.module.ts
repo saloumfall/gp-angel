@@ -1,69 +1,57 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeRoutingModule } from './pages/home/home-routing.module';
-import { CallbackComponent } from './pages/callback/callback.component';
+import { Routes, RouterModule } from '@angular/router';
+// Route guards
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
-import { AdminComponent } from './pages/admin/admin.component';
-import { EventComponent } from './pages/event/event.component';
-import { CreateEventComponent } from './pages/admin/create-event/create-event.component';
-import { UpdateEventComponent } from './pages/admin/update-event/update-event.component';
-
-
+// Page components
+import { HomeComponent } from './pages/home/home.component';
+import { CallbackComponent } from './pages/callback/callback.component';
+import { MyRsvpsComponent } from './pages/my-rsvps/my-rsvps.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'home'
+    component: HomeComponent
   },
   {
-    path: 'admin',
-    canActivate: [
-      AuthGuard,
-      AdminGuard
-    ],
-    children: [
-      {
-        path: 'event/new',
-        component: CreateEventComponent
-      },
-      {
-        path: 'event/update/:id',
-        component: UpdateEventComponent
-      },
-      {
-        path: '',
-        component: AdminComponent
-      }
-    ]
+    path: 'callback',
+    component: CallbackComponent
   },
   {
     path: 'event/:id',
-    component: EventComponent,
+    loadChildren: './pages/event/event.module#EventModule',
     canActivate: [
       AuthGuard
     ]
   },
-
   {
-    path: 'callback',
-    component: CallbackComponent
+    path: 'my-rsvps',
+    component: MyRsvpsComponent,
+    canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: 'admin',
+    loadChildren: './pages/admin/admin.module#AdminModule',
+    canActivate: [
+      AuthGuard,
+      AdminGuard
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 
-
-
 @NgModule({
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    RouterModule.forRoot(routes)
+  imports: [RouterModule.forRoot(routes)],
+  providers: [
+    AuthGuard,
+    AdminGuard
   ],
-  exports: [
-    RouterModule
-  ],
-  declarations: []
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

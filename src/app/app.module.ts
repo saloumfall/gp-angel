@@ -31,37 +31,34 @@ import { SubmittingComponent } from './core/forms/submitting.component';
 import { CreateEventComponent } from './pages/admin/create-event/create-event.component';
 import { UpdateEventComponent } from './pages/admin/update-event/update-event.component';
 import { EventFormComponent } from './pages/admin/event-form/event-form.component';
+import { DeleteEventComponent } from './pages/admin/update-event/delete-event/delete-event.component';
+import { MyRsvpsComponent } from './pages/my-rsvps/my-rsvps.component';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     CallbackComponent,
-    LoadingComponent,
     HomeComponent,
     AdminComponent,
     EventComponent,
     EventDetailComponent,
     RsvpComponent,
     RsvpFormComponent,
-    SubmittingComponent,
     CreateEventComponent,
     UpdateEventComponent,
-    EventFormComponent
+    EventFormComponent,
+    DeleteEventComponent,
+    MyRsvpsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
-
-
-    // Routing
-    FormsModule,
-    RouterModule,
-
-    AppRoutingModule
+    
+    AppRoutingModule,
+    AuthModule.forRoot(),
+    CoreModule.forRoot()
   ],
   providers: [
     AuthGuard,
