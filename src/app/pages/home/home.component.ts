@@ -15,7 +15,7 @@ import { FilterSortService } from '../../core/filter-sort.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  pageTitle = 'Events';
+  pageTitle = 'gpangel';
   eventListSub: Subscription;
   eventList: EventModel[];
   filteredEvents: EventModel[];

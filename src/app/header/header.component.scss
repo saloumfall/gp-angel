@@ -61,7 +61,7 @@
   span,
   span:before,
   span:after {
-    background: #fff;
+    background: $main-text-color;
     border-radius: 1px;
     content: '';
     display: block;
@@ -99,14 +99,14 @@
 /*-- Header and title --*/
 
 .header-page {
-  color: #fff;
+  color: $main-text-color;
   height: 50px;
   margin-bottom: 10px;
   position: relative;
   background-color: $main-color;
 
   a {
-    color: #fff;
+    color: $main-text-color;
     text-decoration: none;
   }
 

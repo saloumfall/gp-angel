@@ -75,7 +75,8 @@
   color: #fff;
   height: 50px;
   margin-bottom: 10px;
-  position: relative; }
+  position: relative;
+  background-color: #ffc209; }
   .header-page a {
     color: #fff;
     text-decoration: none; }

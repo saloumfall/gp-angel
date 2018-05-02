@@ -3,6 +3,12 @@
    LAYOUT VARIABLES
 --------------------*/
 
-$main-color: #ffc209; //linear-gradient(to bottom, #ffd428, #ffc209);
+$header-bg-color: rgba(41, 39, 41, 0.95);
+$header-height: 60px;
+$main-color: #ffc209;
+$main-text-color: #444444;
+$main-text-line-height:  1.2em;
+$secondary-text-color: hsl(0, 0%, 27%);
+$secondary-text-line-height: 1.5rem;
 $padding-screen-small: 3%;
 $padding-screen-large: 1.5% 3%;
